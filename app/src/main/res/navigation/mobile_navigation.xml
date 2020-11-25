@@ -22,4 +22,10 @@
         android:name="com.example.triggertracker.ui.tasks.TasksFragment"
         android:label="Tasks"
         tools:layout="@layout/fragment_tasks" />
+
+    <fragment
+        android:id="@+id/nav_reminders"
+        android:name="com.example.triggertracker.ui.reminders.RemindersFragment"
+        android:label="Reminders"
+        tools:layout="@layout/fragment_reminders" />
 </navigation>
