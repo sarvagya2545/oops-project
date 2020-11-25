@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GetTokenResult;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,6 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 public class UserActivity extends AppCompatActivity implements FirebaseAuth.AuthStateListener {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private DrawerLayout drawer;
     String TAG = "TAG";
 
     @Override
@@ -47,7 +49,7 @@ public class UserActivity extends AppCompatActivity implements FirebaseAuth.Auth
             }
         });
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
@@ -91,6 +93,15 @@ public class UserActivity extends AppCompatActivity implements FirebaseAuth.Auth
                 AuthUI.getInstance().signOut(this);
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

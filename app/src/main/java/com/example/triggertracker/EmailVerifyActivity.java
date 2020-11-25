@@ -70,7 +70,7 @@ public class EmailVerifyActivity extends AppCompatActivity implements FirebaseAu
      */
     public void checkIfEmailVerified(FirebaseUser user) {
         if(user.isEmailVerified()) {
-            Intent intent  = new Intent(this, MainActivity.class);
+            Intent intent  = new Intent(this, UserActivity.class);
             startActivity(intent);
             finish();
         } else {
