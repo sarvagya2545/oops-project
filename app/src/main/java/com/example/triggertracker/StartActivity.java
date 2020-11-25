@@ -90,7 +90,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                 } else {
                     Toast.makeText(this, "Welcome back again", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(this, MainActivity.class);
+                    Intent intent = new Intent(this, UserActivity.class);
                     startActivity(intent);
                 }
                 this.finish();
@@ -118,7 +118,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         if(user != null) {
             Intent intent;
             if(user.isEmailVerified()) {
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, UserActivity.class);
             } else {
                 intent = new Intent(this, EmailVerifyActivity.class);
             }
