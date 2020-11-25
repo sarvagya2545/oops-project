@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class UserActivity extends AppCompatActivity implements FirebaseAuth.Auth
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
+
     String TAG = "TAG";
 
     @Override
@@ -38,16 +40,6 @@ public class UserActivity extends AppCompatActivity implements FirebaseAuth.Auth
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // FAB CODE
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -123,13 +115,5 @@ public class UserActivity extends AppCompatActivity implements FirebaseAuth.Auth
             startLoginActivity();
             return;
         }
-
-        firebaseAuth.getCurrentUser().getIdToken(true)
-                .addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
-                    @Override
-                    public void onSuccess(GetTokenResult getTokenResult) {
-                        Log.d(TAG, "onSuccess: " + getTokenResult.getToken());
-                    }
-                });
     }
 }
