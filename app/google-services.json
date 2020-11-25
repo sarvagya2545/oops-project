@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "401703922457",
+    "firebase_url": "https://oops-project-745eb.firebaseio.com",
+    "project_id": "oops-project-745eb",
+    "storage_bucket": "oops-project-745eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401703922457:android:d56c8330fc98d324d0f388",
+        "android_client_info": {
+          "package_name": "com.example.triggertracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401703922457-gqk2240gl4ejksihqq5kb23j6jclne1e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUCOCelmp4DmeSj4wMQ5YNn8qJyOpt4l8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401703922457-gqk2240gl4ejksihqq5kb23j6jclne1e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
