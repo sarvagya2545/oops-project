@@ -4,14 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddShoppingItemActivity">
+    tools:context=".AddTaskItemActivity">
+
+    <Button
+        android:id="@+id/btnAddTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Set Time"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnAddDate"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddDate" />
+
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="SET TIME"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnAddTime"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Add a new Shopping Item"
+        android:text="Set a new Task"
         android:textAppearance="@style/heading_list_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.117"
@@ -26,21 +47,32 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Add the item name"
+        android:hint="Task"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <NumberPicker
-        android:id="@+id/qtyPicker"
+    <Button
+        android:id="@+id/btnAddDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="72dp"
-        android:layout_marginBottom="96dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddItem"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="Set Date"
+        app:layout_constraintBaseline_toBaselineOf="@+id/dateTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toEndOf="@+id/dateTextView" />
+
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:text="SET DATE"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editShopItemName" />
 
     <Button
@@ -56,14 +88,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+    <CheckBox
+        android:id="@+id/hasReminder"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Select Quantity of item"
-        app:layout_constraintBottom_toBottomOf="@+id/qtyPicker"
-        app:layout_constraintEnd_toStartOf="@+id/qtyPicker"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Set reminder"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddDate"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/qtyPicker" />
+        app:layout_constraintTop_toBottomOf="@+id/editShopItemName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

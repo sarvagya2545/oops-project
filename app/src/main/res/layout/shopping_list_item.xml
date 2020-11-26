@@ -46,29 +46,16 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/shopping_item_image_card"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:text="List Item"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/shopping_item_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_below="@+id/shopping_item_name"
-                android:layout_toRightOf="@+id/shopping_item_image_card"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="40dp"
-                android:text="22/10/2020 9pm"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/shopping_item_image_card"
-                android:layout_below="@+id/shopping_item_date"
+                android:layout_below="@+id/shopping_item_name"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
@@ -100,16 +87,6 @@
                     android:text="+"
                     android:textSize="18sp" />
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/shopping_item_notification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="18dp"
-                android:src="@drawable/ic_baseline_notifications_24" />
 
         </RelativeLayout>
 

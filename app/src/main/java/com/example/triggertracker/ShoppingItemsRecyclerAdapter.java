@@ -42,15 +42,6 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
 
         holder.shoppingItemName.setText(item.getName());
         holder.shoppingItemQty.setText(String.valueOf(item.getQty()));
-        if(!item.getHasReminder()) {
-            holder.shoppingItemDate.setText("");
-//            holder.shoppingItemNotification.setVisibility(View.GONE);
-        } else {
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            CharSequence dateCharSeq = df.format(item.getReminderTime().toDate());
-            holder.shoppingItemDate.setText(dateCharSeq);
-//            holder.shoppingItemNotification.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
@@ -65,17 +56,15 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
 
     class ShoppingItemViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView shoppingItemImage, shoppingItemNotification;
-        private TextView shoppingItemName, shoppingItemDate, shoppingItemQty;
+        private ImageView shoppingItemImage;
+        private TextView shoppingItemName,  shoppingItemQty;
         private Button btnPlus, btnMinus;
 
         public ShoppingItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
             shoppingItemImage = itemView.findViewById(R.id.shopping_item_image);
-            shoppingItemNotification = itemView.findViewById(R.id.shopping_item_notification);
             shoppingItemName = itemView.findViewById(R.id.shopping_item_name);
-            shoppingItemDate = itemView.findViewById(R.id.shopping_item_date);
             shoppingItemQty = itemView.findViewById(R.id.shopping_item_qty);
             btnPlus = itemView.findViewById(R.id.btnPlus);
             btnMinus = itemView.findViewById(R.id.btnMinus);

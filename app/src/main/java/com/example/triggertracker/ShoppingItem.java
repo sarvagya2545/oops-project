@@ -5,23 +5,15 @@ import com.google.firebase.Timestamp;
 public class ShoppingItem {
     private String name;
     private Timestamp created;
-    private Timestamp reminderTime;
-    private boolean hasReminder;
     private int qty;
     private String userId;
 
     public ShoppingItem() {
     }
 
-    public ShoppingItem(String name, Timestamp created, Timestamp reminderTime, boolean hasReminder, int qty, String userId) {
+    public ShoppingItem(String name, Timestamp created, int qty, String userId) {
         this.name = name;
         this.created = created;
-        if(reminderTime == null) {
-            this.reminderTime = created;
-        } else {
-            this.reminderTime = reminderTime;
-        }
-        this.hasReminder = hasReminder;
         this.qty = qty;
         this.userId = userId;
     }
@@ -36,22 +28,6 @@ public class ShoppingItem {
 
     public Timestamp getCreatedTimestamp() {
         return created;
-    }
-
-    public Timestamp getReminderTime() {
-        return reminderTime;
-    }
-
-    public void setReminderTime(Timestamp reminderTime) {
-        this.reminderTime = reminderTime;
-    }
-
-    public boolean getHasReminder() {
-        return hasReminder;
-    }
-
-    public void setHasReminder(boolean hasReminder) {
-        this.hasReminder = hasReminder;
     }
 
     public int getQty() {
@@ -75,8 +51,6 @@ public class ShoppingItem {
         return "ShoppingItem{" +
                 "name='" + name + '\'' +
                 ", created=" + created +
-                ", reminderTime=" + reminderTime +
-                ", hasReminder=" + hasReminder +
                 ", qty=" + qty +
                 ", userId='" + userId + '\'' +
                 '}';
