@@ -54,9 +54,8 @@ public class ShoppingItem {
         this.hasReminder = hasReminder;
     }
 
-    public String getQty() {
-        return Integer.toString(qty);
-//        return qty;
+    public int getQty() {
+        return qty;
     }
 
     public void setQty(int qty) {

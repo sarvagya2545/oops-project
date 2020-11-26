@@ -37,11 +37,11 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
     @Override
     public void onBindViewHolder(@NonNull ShoppingItemViewHolder holder, final int position) {
         ShoppingItem item = shoppingItems.get(position);
-        Log.d("TAG", "onBindViewHolder: holder: " + holder.shoppingItemQty.toString());
-        Log.d("TAG", "onBindViewHolder: item: " + item.getQty());
+//        Log.d("TAG", "onBindViewHolder: holder: " + holder.shoppingItemQty.toString());
+//        Log.d("TAG", "onBindViewHolder: item: " + String.valueOf(item.getQty()));
 
         holder.shoppingItemName.setText(item.getName());
-        holder.shoppingItemQty.setText(item.getQty());
+        holder.shoppingItemQty.setText(String.valueOf(item.getQty()));
         if(!item.getHasReminder()) {
             holder.shoppingItemDate.setText("");
 //            holder.shoppingItemNotification.setVisibility(View.GONE);
