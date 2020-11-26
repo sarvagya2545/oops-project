@@ -60,7 +60,7 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
 
     public void setShoppingItems(List<ShoppingItem> shoppingItems) {
         this.shoppingItems = shoppingItems;
-//        notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     class ShoppingItemViewHolder extends RecyclerView.ViewHolder{

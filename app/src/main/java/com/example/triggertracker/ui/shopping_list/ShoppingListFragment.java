@@ -41,7 +41,6 @@ public class ShoppingListFragment extends Fragment {
         shoppingListViewModel.getShoppingItems().observe(getViewLifecycleOwner(), new Observer<List<ShoppingItem>>() {
             @Override
             public void onChanged(List<ShoppingItem> shoppingList) {
-                // TODO: UPDATE UI
                 shoppingListAdapter = new ShoppingItemsRecyclerAdapter(requireActivity());
                 shoppingListAdapter.setShoppingItems(shoppingList);
                 shoppingRecyclerView.setAdapter(shoppingListAdapter);
