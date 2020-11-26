@@ -2,27 +2,20 @@ package com.example.triggertracker;
 
 import com.google.firebase.Timestamp;
 
-public class ShoppingItem {
+public class Task {
     private String name;
     private Timestamp created;
     private Timestamp reminderTime;
     private boolean hasReminder;
-    private int qty;
     private String userId;
 
-    public ShoppingItem() {
-    }
+    public Task() {}
 
-    public ShoppingItem(String name, Timestamp created, Timestamp reminderTime, boolean hasReminder, int qty, String userId) {
+    public Task(String name, Timestamp created, Timestamp reminderTime, boolean hasReminder, String userId) {
         this.name = name;
         this.created = created;
-        if(reminderTime == null) {
-            this.reminderTime = created;
-        } else {
-            this.reminderTime = reminderTime;
-        }
+        this.reminderTime = reminderTime;
         this.hasReminder = hasReminder;
-        this.qty = qty;
         this.userId = userId;
     }
 
@@ -34,7 +27,7 @@ public class ShoppingItem {
         this.name = name;
     }
 
-    public Timestamp getCreatedTimestamp() {
+    public Timestamp getCreatedTimeStamp() {
         return created;
     }
 
@@ -54,15 +47,6 @@ public class ShoppingItem {
         this.hasReminder = hasReminder;
     }
 
-    public String getQty() {
-        return Integer.toString(qty);
-//        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
     public String getUserId() {
         return userId;
     }
@@ -73,12 +57,11 @@ public class ShoppingItem {
 
     @Override
     public String toString() {
-        return "ShoppingItem{" +
+        return "Task{" +
                 "name='" + name + '\'' +
                 ", created=" + created +
                 ", reminderTime=" + reminderTime +
                 ", hasReminder=" + hasReminder +
-                ", qty=" + qty +
                 ", userId='" + userId + '\'' +
                 '}';
     }

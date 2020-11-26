@@ -6,20 +6,47 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.triggertracker.R;
+import com.example.triggertracker.ShoppingItemsRecyclerAdapter;
+import com.example.triggertracker.Task;
+import com.example.triggertracker.TasksRecyclerAdapter;
+
+import java.util.List;
 
 public class TasksFragment extends Fragment {
 
     private TasksViewModel tasksViewModel;
+    private TasksRecyclerAdapter tasksRecyclerAdapter;
+    private RecyclerView taskRecView;
+    private String TAG = "TAG";
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        tasksViewModel =
-                ViewModelProviders.of(this).get(TasksViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tasks, container, false);
-        return root;
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        tasksViewModel = new ViewModelProvider(requireActivity()).get(TasksViewModel.class);
+        final View view = inflater.inflate(R.layout.fragment_tasks, container, false);
+        taskRecView = view.findViewById(R.id.task_list_recyclerView);
+
+        tasksViewModel.getTasks().observe(getViewLifecycleOwner(), new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+                tasksRecyclerAdapter = new TasksRecyclerAdapter(requireActivity());
+                tasksRecyclerAdapter.setTasks(tasks);
+                taskRecView.setAdapter(tasksRecyclerAdapter);
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 }
