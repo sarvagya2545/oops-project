@@ -39,10 +39,11 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             CharSequence dateCharSeq = df.format(task.getReminderTime().toDate());
             holder.taskItemTime.setText(dateCharSeq);
+//            holder.taskItemNotification.setVisibility(View.VISIBLE);
         } else {
             holder.taskItemTime.setText("");
+            holder.taskItemNotification.setVisibility(View.INVISIBLE);
         }
-        holder.taskItemNotification.setVisibility(View.INVISIBLE);
     }
 
     @Override
