@@ -117,7 +117,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
 
         if(user != null) {
             Intent intent;
-            if(user.isEmailVerified()) {
+            if(user.isEmailVerified() || user.getPhoneNumber() != null) {
                 intent = new Intent(this, UserActivity.class);
             } else {
                 intent = new Intent(this, EmailVerifyActivity.class);

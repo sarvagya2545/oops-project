@@ -104,7 +104,7 @@ public class ShoppingListFragment extends Fragment {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 deleteFromUI(shoppingListAdapter, position);
-                                                shoppingListAdapter.notifyItemRemoved(position);
+                                                shoppingListAdapter.notifyDataSetChanged();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
@@ -120,13 +120,19 @@ public class ShoppingListFragment extends Fragment {
 
                     public void deleteFromUI(final ShoppingItemsRecyclerAdapter shoppingListAdapter, final int position) {
                         shoppingListAdapter.notifyItemRemoved(position);
-                        Snackbar.make(shoppingRecyclerView, "Item deleted", Snackbar.LENGTH_LONG)
-                                .setAction("Undo", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        restoreItem(position);
-                                    }
-                                }).show();
+                        Snackbar.make(shoppingRecyclerView, "Item deleted", Snackbar.LENGTH_SHORT)
+                                .setAction("Undo", undoDeleteListener(position))
+                                .show();
+                    }
+
+                    public View.OnClickListener undoDeleteListener(final int position) {
+                        return new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                shoppingList.clear();
+                                restoreItem(position);
+                            }
+                        };
                     }
 
                     private void restoreItem(final int position) {
@@ -136,12 +142,9 @@ public class ShoppingListFragment extends Fragment {
                                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                                        if(task.isSuccessful()) {
-                                            Log.d(TAG, "onComplete: Added item back!");
-                                            shoppingListAdapter.notifyItemInserted(position);
-                                        } else {
-                                            Toast.makeText(getContext(), "Restore failed! Create new item.", Toast.LENGTH_SHORT).show();
-                                        }
+                                        Log.d(TAG, "onComplete: Added item back!");
+                                        shoppingListAdapter.notifyItemInserted(position);
+                                        shoppingListAdapter.notifyDataSetChanged();
                                     }
                                 });
                     }

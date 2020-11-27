@@ -89,6 +89,7 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if(task.isSuccessful()) {
                                     final Task task1 = task.getResult().toObject(Task.class);
+                                    // TODO: GET THE MESSAGE FROM DB
                                     final String name = "";
                                     final String itemName = "itemName";
                                     final String itemQuantity = "1";
