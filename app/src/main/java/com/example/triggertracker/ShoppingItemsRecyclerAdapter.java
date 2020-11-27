@@ -20,6 +20,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -88,28 +90,33 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if(task.isSuccessful()) {
-                                    final Task task1 = task.getResult().toObject(Task.class);
+//                                    final Task task1 = task.getResult().toObject(Task.class);
+                                    DocumentSnapshot snapshot = task.getResult();
+
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     // TODO: GET THE MESSAGE FROM DB
-                                    final String name = "";
-                                    final String itemName = "itemName";
-                                    final String itemQuantity = "1";
+                                    if(user != null) {
+                                        String name = user.getDisplayName() != null ? user.getDisplayName() : user.getPhoneNumber();
+                                        String itemName = item.getName();
+                                        String itemQuantity = Integer.toString(item.getQty());
 
-                                    String msg = "Shopping List Item shared by: " + name +
-                                            "\nItem: " + itemName +
-                                            "\nQuantity: " + itemQuantity;
+                                        String msg = "Shopping List Item shared by: " + name +
+                                                "\nItem: " + itemName +
+                                                "\nQuantity: " + itemQuantity;
 
-                                    Intent myIntent=new Intent(Intent.ACTION_SEND);
-                                    myIntent.setType("text/plain");
+                                        Intent myIntent=new Intent(Intent.ACTION_SEND);
+                                        myIntent.setType("text/plain");
 
-                                    String shareSub="Item";
-                                    myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
-                                    myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
-                                    myIntent.putExtra(Intent.EXTRA_TEXT,msg);
+                                        String shareSub="Item";
+                                        myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+                                        myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+                                        myIntent.putExtra(Intent.EXTRA_TEXT,msg);
 
-                                    //                Uri uri = Uri.fromFile(file);
-                                    //                myIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                                        //                Uri uri = Uri.fromFile(file);
+                                        //                myIntent.putExtra(Intent.EXTRA_STREAM, uri);
 
-                                    context.startActivity(Intent.createChooser(myIntent, "Share via"));
+                                        context.startActivity(Intent.createChooser(myIntent, "Share via"));
+                                    }
 
                                 } else {
                                     Toast.makeText(context, "Some error occurred", Toast.LENGTH_SHORT).show();
