@@ -21,10 +21,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class AddTaskItemActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -118,16 +120,24 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
 
     private void addItem() {
         Log.d(TAG, "addItem: Reached here");
+
         editShopItemName = findViewById(R.id.editShopItemName);
+
         String name = editShopItemName.getText().toString();
         Timestamp created = new Timestamp(calendar.getTime());
-        int qty = 1;
-        // FirebaseAuth.getInstance().getCurrentUser().getUid()
-        ShoppingItem newItem = new ShoppingItem(name, created, qty, "123");
 
+        Timestamp reminderTime = new Timestamp(calendar1.getTime());
+
+        boolean hasReminder = checkBox.isChecked();
+        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+
+        // Task created
+        Task newTask = new Task(name, created, reminderTime, hasReminder, userId);
+
+        // Firestore: push task to database
         FirebaseFirestore.getInstance()
-                .collection("ShopListItems")
-                .add(newItem)
+                .collection("tasks")
+                .add(newTask)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {

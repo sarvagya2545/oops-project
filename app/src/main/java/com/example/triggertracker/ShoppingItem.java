@@ -34,6 +34,7 @@ public class ShoppingItem {
         this.created = created;
         this.qty = qty;
         this.userId = userId;
+        this.isBought = false;
     }
 
     public String getName() {

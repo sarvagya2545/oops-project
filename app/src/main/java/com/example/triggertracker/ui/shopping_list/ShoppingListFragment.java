@@ -65,35 +65,6 @@ public class ShoppingListFragment extends Fragment {
         return view;
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        initRecyclerView(user);
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        if(shoppingListAdapter != null) {
-//            shoppingListAdapter.stopListening();
-//        }
-//    }
-//
-//    public void initRecyclerView(FirebaseUser user) {
-//        Query query = FirebaseFirestore.getInstance().collection("ShopListItems");
-//        ///.whereEqualTo("userId", user.getUid());
-//
-//        FirestoreRecyclerOptions<ShoppingItem> options = new FirestoreRecyclerOptions.Builder<ShoppingItem>()
-//                .setQuery(query, ShoppingItem.class)
-//                .build();
-//
-//        shoppingListAdapter = new ShoppingItemsRecyclerAdapter(options);
-//        shoppingRecyclerView.setAdapter(shoppingListAdapter);
-//
-//        shoppingListAdapter.startListening();
-//    }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

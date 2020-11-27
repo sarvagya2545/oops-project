@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -65,8 +66,7 @@ public class AddShoppingItemActivity extends AppCompatActivity implements View.O
         String name = editShopItemName.getText().toString();
         Timestamp created = new Timestamp(new Date());
         int qty = qtyValue;
-        // FirebaseAuth.getInstance().getCurrentUser().getUid()
-        ShoppingItem newItem = new ShoppingItem(name, created, qty, "123");
+        ShoppingItem newItem = new ShoppingItem(name, created, qty, FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         FirebaseFirestore.getInstance()
                 .collection("ShopListItems")

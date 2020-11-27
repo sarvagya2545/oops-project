@@ -106,7 +106,7 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
         FirebaseFirestore.getInstance()
                 .collection("ShopListItems")
                 .document(itemID)
-                .update("isBought", isBought)
+                .update("bought", isBought)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
