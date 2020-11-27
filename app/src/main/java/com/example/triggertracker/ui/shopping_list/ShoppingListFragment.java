@@ -124,29 +124,33 @@ public class ShoppingListFragment extends Fragment {
                                 .setAction("Undo", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        FirebaseFirestore.getInstance()
-                                                .collection("ShopListItems")
-                                                .add(deletedShoppingItem)
-                                                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                        if(task.isSuccessful()) {
-                                                            Log.d(TAG, "onComplete: Added item back!");
-                                                            shoppingListAdapter.notifyItemInserted(position);
-                                                        } else {
-                                                            Toast.makeText(getContext(), "Restore failed! Create new item.", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    }
-                                                });
+                                        restoreItem(position);
                                     }
                                 }).show();
+                    }
+
+                    private void restoreItem(final int position) {
+                        FirebaseFirestore.getInstance()
+                                .collection("ShopListItems")
+                                .add(deletedShoppingItem)
+                                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                                        if(task.isSuccessful()) {
+                                            Log.d(TAG, "onComplete: Added item back!");
+                                            shoppingListAdapter.notifyItemInserted(position);
+                                        } else {
+                                            Toast.makeText(getContext(), "Restore failed! Create new item.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                     }
 
                     @Override
                     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
                         new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                                .addBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorDanger))
-                                .addActionIcon(R.drawable.ic_baseline_delete_24)
+                                .addSwipeRightBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorDanger))
+                                .addSwipeRightActionIcon(R.drawable.ic_baseline_delete_24)
                                 .create()
                                 .decorate();
 
