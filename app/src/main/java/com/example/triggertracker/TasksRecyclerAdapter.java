@@ -34,7 +34,6 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, final int position) {
         Task task = tasks.get(position);
-//        Log.d("TAG", "onBindViewHolder: reminder time: " + task.getReminderTime().toString());
         holder.taskItemName.setText(task.getName());
         if(task.getHasReminder()) {
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -43,7 +42,7 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
         } else {
             holder.taskItemTime.setText("");
         }
-//        holder.taskItemTime.setText(task.getReminderTime().toString());
+        holder.taskItemNotification.setVisibility(View.INVISIBLE);
     }
 
     @Override

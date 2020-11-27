@@ -26,6 +26,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public class AddTaskItemActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,7 +34,8 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
     TextView dateTextView, timeTextView;
     EditText editShopItemName;
     Button btnAddDate, btnAddTime, btnAddItem;
-    Calendar calendar, calendar1 = Calendar.getInstance();
+    Calendar calendar = Calendar.getInstance(),
+             calendar1 = Calendar.getInstance();
     CheckBox checkBox;
 
     private String TAG = "TAG";
@@ -79,6 +81,7 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
+        calendar1.setTime(new Date());
     }
 
     @Override
@@ -97,7 +100,6 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void addTime() {
-        Calendar calendar = Calendar.getInstance();
         int HOUR = calendar.get(Calendar.HOUR);
         int MINUTE = calendar.get(Calendar.MINUTE);
 
@@ -125,12 +127,16 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
 
         String name = editShopItemName.getText().toString();
         Timestamp created = new Timestamp(calendar.getTime());
-
-        Timestamp reminderTime = new Timestamp(calendar1.getTime());
-
         boolean hasReminder = checkBox.isChecked();
-        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        Timestamp reminderTime;
+        if(hasReminder) {
+            reminderTime = new Timestamp(calendar1.getTime());
+        } else {
+            reminderTime = new Timestamp(0,0);
+        }
 
+//        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        String userId = "123";
         // Task created
         Task newTask = new Task(name, created, reminderTime, hasReminder, userId);
 
@@ -155,8 +161,6 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void addDate() {
-        calendar = Calendar.getInstance();
-
         int YEAR = calendar.get(Calendar.YEAR);
         int MONTH = calendar.get(Calendar.MONTH);
         int DATE = calendar.get(Calendar.DATE);
