@@ -19,6 +19,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
@@ -71,6 +72,32 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                 } else {
                     updateItemStatus(itemID,false);
                 }
+            }
+        });
+
+        holder.shoppingItemShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String name = "name";
+                final String itemName = "itemName";
+                final String itemQuantity = "1";
+
+                FirebaseFirestore.getInstance()
+                        .collection("ShopListItem")
+                        .document(itemID)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if(task.isSuccessful()) {
+                                    String msg = "Shopping List Item shared by: " + name + "\nItem: " + itemName + "\nQuantity: " + itemQuantity;
+                                    // TODO: IMPLEMENT SHARE THE MESSAGE VIA WHATSAPP
+
+                                } else {
+                                    Toast.makeText(context, "Some error occurred", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
     }
