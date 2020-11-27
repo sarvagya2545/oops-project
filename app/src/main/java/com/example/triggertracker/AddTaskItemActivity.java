@@ -108,7 +108,7 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                calendar1.set(Calendar.HOUR, hourOfDay);
+                calendar1.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 calendar1.set(Calendar.MINUTE, minute);
                 calendar1.set(Calendar.SECOND, 0);
 
@@ -161,9 +161,9 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void addDate() {
-        int YEAR = calendar.get(Calendar.YEAR);
-        int MONTH = calendar.get(Calendar.MONTH);
-        int DATE = calendar.get(Calendar.DATE);
+        int YEAR = calendar1.get(Calendar.YEAR);
+        int MONTH = calendar1.get(Calendar.MONTH);
+        int DATE = calendar1.get(Calendar.DATE);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override

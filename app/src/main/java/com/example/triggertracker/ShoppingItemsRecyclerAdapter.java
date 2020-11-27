@@ -1,6 +1,7 @@
 package com.example.triggertracker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,9 +79,6 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
         holder.shoppingItemShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String name = "name";
-                final String itemName = "itemName";
-                final String itemQuantity = "1";
 
                 FirebaseFirestore.getInstance()
                         .collection("ShopListItem")
@@ -90,8 +88,27 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if(task.isSuccessful()) {
-                                    String msg = "Shopping List Item shared by: " + name + "\nItem: " + itemName + "\nQuantity: " + itemQuantity;
-                                    // TODO: IMPLEMENT SHARE THE MESSAGE VIA WHATSAPP
+                                    final Task task1 = task.getResult().toObject(Task.class);
+                                    final String name = "";
+                                    final String itemName = "itemName";
+                                    final String itemQuantity = "1";
+
+                                    String msg = "Shopping List Item shared by: " + name +
+                                            "\nItem: " + itemName +
+                                            "\nQuantity: " + itemQuantity;
+
+                                    Intent myIntent=new Intent(Intent.ACTION_SEND);
+                                    myIntent.setType("text/plain");
+
+                                    String shareSub="Item";
+                                    myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+                                    myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+                                    myIntent.putExtra(Intent.EXTRA_TEXT,msg);
+
+                                    //                Uri uri = Uri.fromFile(file);
+                                    //                myIntent.putExtra(Intent.EXTRA_STREAM, uri);
+
+                                    context.startActivity(Intent.createChooser(myIntent, "Share via"));
 
                                 } else {
                                     Toast.makeText(context, "Some error occurred", Toast.LENGTH_SHORT).show();
