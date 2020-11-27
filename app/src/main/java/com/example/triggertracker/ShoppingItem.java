@@ -8,6 +8,15 @@ public class ShoppingItem {
     private int qty;
     private String userId;
     private String documentId;
+    private boolean isBought;
+
+    public boolean isBought() {
+        return isBought;
+    }
+
+    public void setBought(boolean bought) {
+        isBought = bought;
+    }
 
     public String getDocumentId() {
         return documentId;

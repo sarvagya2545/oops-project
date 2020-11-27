@@ -88,6 +88,25 @@
                     android:textSize="18sp" />
             </LinearLayout>
 
+            <CheckBox
+                android:id="@+id/shopping_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="20dp" />
+
+            <ImageView
+                android:id="@+id/shopping_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="78dp"
+                android:layout_marginEnd="26dp"
+                android:src="@drawable/ic_baseline_share_24" />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
