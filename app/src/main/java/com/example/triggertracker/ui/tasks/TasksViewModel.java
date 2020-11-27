@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.triggertracker.ShoppingItem;
 import com.example.triggertracker.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -27,6 +28,7 @@ public class TasksViewModel extends ViewModel {
     public MutableLiveData<List<Task>> getTasks() {
         FirebaseFirestore.getInstance()
                 .collection("tasks")
+                .whereEqualTo("userId", FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {

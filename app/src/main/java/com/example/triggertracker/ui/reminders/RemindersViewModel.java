@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.triggertracker.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -27,6 +28,7 @@ public class RemindersViewModel extends ViewModel {
     public MutableLiveData<List<Task>> getmReminders() {
         FirebaseFirestore.getInstance()
                 .collection("tasks")
+                .whereEqualTo("userId", FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .whereEqualTo("hasReminder", true)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override

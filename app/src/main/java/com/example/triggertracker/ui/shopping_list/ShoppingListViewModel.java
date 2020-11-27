@@ -36,7 +36,7 @@ public class ShoppingListViewModel extends ViewModel {
     public LiveData<List<ShoppingItem>> getShoppingItems() {
         FirebaseFirestore.getInstance()
                 .collection("ShopListItems")
-//                .whereEqualTo("userId", FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .whereEqualTo("userId", FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {

@@ -135,8 +135,8 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
             reminderTime = new Timestamp(0,0);
         }
 
-//        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        String userId = "123";
+        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+//        String userId = "123";
         // Task created
         Task newTask = new Task(name, created, reminderTime, hasReminder, userId);
 
