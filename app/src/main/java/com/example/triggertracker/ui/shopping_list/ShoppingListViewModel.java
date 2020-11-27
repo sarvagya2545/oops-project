@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,7 +45,15 @@ public class ShoppingListViewModel extends ViewModel {
                             return;
                         }
                         if(queryDocumentSnapshots != null) {
-                            List<ShoppingItem> items = queryDocumentSnapshots.toObjects(ShoppingItem.class);
+                            ArrayList<ShoppingItem> items = new ArrayList<>();
+//                            List<ShoppingItem> items = queryDocumentSnapshots.toObjects(ShoppingItem.class);
+                            for(DocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
+                                ShoppingItem shoppingItem = documentSnapshot.toObject(ShoppingItem.class);
+
+                                shoppingItem.setDocumentId(documentSnapshot.getId());
+                                items.add(shoppingItem);
+                            }
+
                             mShoppingList.setValue(items);
                         } else {
                             Log.e(TAG, "query document snapshots was null");

@@ -7,6 +7,15 @@ public class ShoppingItem {
     private Timestamp created;
     private int qty;
     private String userId;
+    private String documentId;
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
 
     public ShoppingItem() {
     }

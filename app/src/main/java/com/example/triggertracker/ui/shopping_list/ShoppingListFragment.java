@@ -22,7 +22,10 @@ import com.example.triggertracker.ShoppingItem;
 import com.example.triggertracker.ShoppingItemsRecyclerAdapter;
 import com.example.triggertracker.UserActivity;
 import com.firebase.ui.auth.data.model.User;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -39,7 +42,7 @@ public class ShoppingListFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        shoppingListViewModel = new ViewModelProvider(requireActivity()).get(ShoppingListViewModel.class);
+        shoppingListViewModel = new ViewModelProvider(getActivity()).get(ShoppingListViewModel.class);
         final View view = inflater.inflate(R.layout.fragment_shopping_list, container, false);
         shoppingRecyclerView = view.findViewById(R.id.shopping_list_recyclerView);
         fabAddShoppingItem = view.findViewById(R.id.fabAddShoppingItem);
@@ -54,13 +57,42 @@ public class ShoppingListFragment extends Fragment {
         shoppingListViewModel.getShoppingItems().observe(getViewLifecycleOwner(), new Observer<List<ShoppingItem>>() {
             @Override
             public void onChanged(List<ShoppingItem> shoppingList) {
-                shoppingListAdapter = new ShoppingItemsRecyclerAdapter(requireActivity());
+                shoppingListAdapter = new ShoppingItemsRecyclerAdapter(getContext());
                 shoppingListAdapter.setShoppingItems(shoppingList);
                 shoppingRecyclerView.setAdapter(shoppingListAdapter);
             }
         });
         return view;
     }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        initRecyclerView(user);
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        if(shoppingListAdapter != null) {
+//            shoppingListAdapter.stopListening();
+//        }
+//    }
+//
+//    public void initRecyclerView(FirebaseUser user) {
+//        Query query = FirebaseFirestore.getInstance().collection("ShopListItems");
+//        ///.whereEqualTo("userId", user.getUid());
+//
+//        FirestoreRecyclerOptions<ShoppingItem> options = new FirestoreRecyclerOptions.Builder<ShoppingItem>()
+//                .setQuery(query, ShoppingItem.class)
+//                .build();
+//
+//        shoppingListAdapter = new ShoppingItemsRecyclerAdapter(options);
+//        shoppingRecyclerView.setAdapter(shoppingListAdapter);
+//
+//        shoppingListAdapter.startListening();
+//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
