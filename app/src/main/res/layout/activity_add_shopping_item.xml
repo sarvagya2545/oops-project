@@ -37,11 +37,11 @@
         android:id="@+id/qtyPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="72dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginRight="88dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddItem"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editShopItemName" />
+        app:layout_constraintTop_toBottomOf="@+id/editShopItemName"
+        app:layout_constraintVertical_bias="0.934" />
 
     <Button
         android:id="@+id/btnAddItem"
@@ -65,5 +65,38 @@
         app:layout_constraintEnd_toStartOf="@+id/qtyPicker"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/qtyPicker" />
+
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Image"
+        app:layout_constraintBottom_toTopOf="@+id/qtyPicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editShopItemName"
+        app:layout_constraintVertical_bias="0.239" />
+
+    <TextView
+        android:id="@+id/textImageStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No file chosen"
+        app:layout_constraintBottom_toBottomOf="@+id/btnUpload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnUpload"
+        app:layout_constraintTop_toTopOf="@+id/btnUpload" />
+
+    <ImageView
+        android:id="@+id/uploadImage"
+        android:layout_width="198dp"
+        android:layout_height="203dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/btnUpload"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnUpload"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpload"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

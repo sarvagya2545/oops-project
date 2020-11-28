@@ -19,6 +19,8 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,12 +48,20 @@ public class ShoppingListViewModel extends ViewModel {
                         }
                         if(queryDocumentSnapshots != null) {
                             ArrayList<ShoppingItem> items = new ArrayList<>();
-//                            List<ShoppingItem> items = queryDocumentSnapshots.toObjects(ShoppingItem.class);
                             for(DocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
                                 ShoppingItem shoppingItem = documentSnapshot.toObject(ShoppingItem.class);
 
                                 shoppingItem.setDocumentId(documentSnapshot.getId());
                                 items.add(shoppingItem);
+
+                                StorageReference ref = FirebaseStorage.getInstance().getReference()
+                                        .child("images")
+                                        .child("shoppingItemImages")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "..." + documentSnapshot.getId() + ".jpeg");
+
+
+                                shoppingItem.setImageReference(ref);
+
                             }
 
                             mShoppingList.setValue(items);

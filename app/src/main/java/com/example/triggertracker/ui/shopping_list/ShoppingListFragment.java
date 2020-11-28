@@ -103,8 +103,7 @@ public class ShoppingListFragment extends Fragment {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                deleteFromUI(shoppingListAdapter, position);
-                                                shoppingListAdapter.notifyDataSetChanged();
+                                                shoppingListAdapter.notifyItemRemoved(position);
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
@@ -113,40 +112,8 @@ public class ShoppingListFragment extends Fragment {
                                                 Log.e(TAG, "onFailure: ", e);
                                             }
                                         });
-
                                 break;
                         }
-                    }
-
-                    public void deleteFromUI(final ShoppingItemsRecyclerAdapter shoppingListAdapter, final int position) {
-                        shoppingListAdapter.notifyItemRemoved(position);
-                        Snackbar.make(shoppingRecyclerView, "Item deleted", Snackbar.LENGTH_SHORT)
-                                .setAction("Undo", undoDeleteListener(position))
-                                .show();
-                    }
-
-                    public View.OnClickListener undoDeleteListener(final int position) {
-                        return new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                shoppingList.clear();
-                                restoreItem(position);
-                            }
-                        };
-                    }
-
-                    private void restoreItem(final int position) {
-                        FirebaseFirestore.getInstance()
-                                .collection("ShopListItems")
-                                .add(deletedShoppingItem)
-                                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                                        Log.d(TAG, "onComplete: Added item back!");
-                                        shoppingListAdapter.notifyItemInserted(position);
-                                        shoppingListAdapter.notifyDataSetChanged();
-                                    }
-                                });
                     }
 
                     @Override

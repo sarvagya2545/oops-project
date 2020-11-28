@@ -1,6 +1,7 @@
 package com.example.triggertracker;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.storage.StorageReference;
 
 public class ShoppingItem {
     private String name;
@@ -9,6 +10,15 @@ public class ShoppingItem {
     private String userId;
     private String documentId;
     private boolean isBought;
+    private StorageReference imageReference;
+
+    public StorageReference getImageReference() {
+        return imageReference;
+    }
+
+    public void setImageReference(StorageReference reference) {
+        this.imageReference = reference;
+    }
 
     public boolean isBought() {
         return isBought;

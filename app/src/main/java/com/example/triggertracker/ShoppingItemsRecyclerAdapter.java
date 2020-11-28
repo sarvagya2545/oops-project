@@ -2,6 +2,7 @@ package com.example.triggertracker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +18,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,7 +51,7 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ShoppingItemViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ShoppingItemViewHolder holder, final int position) {
         final ShoppingItem item = shoppingItems.get(position);
         final String itemID = item.getDocumentId();
 
@@ -78,6 +82,25 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                 }
             }
         });
+
+        item.getImageReference().getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+//                        Glide
+//                                .with(context)
+//                                .load(uri)
+//                                .placeholder()
+//                                .centerCrop()
+//                                .into(holder.shoppingItemImage);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure: Did not load");
+                    }
+                });
 
         holder.shoppingItemShare.setOnClickListener(new View.OnClickListener() {
             @Override
