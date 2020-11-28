@@ -8,6 +8,15 @@ public class Task {
     private Timestamp reminderTime;
     private boolean hasReminder;
     private String userId;
+    private String documentId;
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
 
     public Task() {}
 

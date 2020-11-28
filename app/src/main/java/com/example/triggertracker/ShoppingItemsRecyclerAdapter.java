@@ -91,11 +91,7 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if(task.isSuccessful()) {
-//                                    final Task task1 = task.getResult().toObject(Task.class);
-                                    DocumentSnapshot snapshot = task.getResult();
-
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                    // TODO: GET THE MESSAGE FROM DB
                                     if(user != null) {
                                         String name = user.getDisplayName() != null ? user.getDisplayName() : user.getPhoneNumber();
                                         String itemName = item.getName();

@@ -9,11 +9,13 @@ import androidx.lifecycle.ViewModel;
 import com.example.triggertracker.ShoppingItem;
 import com.example.triggertracker.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TasksViewModel extends ViewModel {
@@ -37,8 +39,14 @@ public class TasksViewModel extends ViewModel {
                             return;
                         }
                         if(queryDocumentSnapshots != null) {
-                            List<Task> items = queryDocumentSnapshots.toObjects(Task.class);
-                            mTasks.setValue(items);
+                            ArrayList<Task> tasks = new ArrayList<>();
+                            for(DocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
+                                Task task = documentSnapshot.toObject(Task.class);
+
+                                task.setDocumentId(documentSnapshot.getId());
+                                tasks.add(task);
+                            }
+                            mTasks.setValue(tasks);
                         } else {
                             Log.e(TAG, "query document snapshots was null");
                         }
