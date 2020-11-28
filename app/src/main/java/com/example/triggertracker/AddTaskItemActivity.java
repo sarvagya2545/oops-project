@@ -3,8 +3,12 @@ package com.example.triggertracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.triggertracker.ui.home.HomeViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
@@ -38,7 +43,10 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
              calendar1 = Calendar.getInstance();
     CheckBox checkBox;
 
+    public static final String NOTIFICATION_MESSAGE = "com.example.triggertracker.notification.MESSAGE";
+
     private String TAG = "TAG";
+    private int noOfRemindersSet = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +133,7 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
 
         editShopItemName = findViewById(R.id.editShopItemName);
 
-        String name = editShopItemName.getText().toString();
+        final String name = editShopItemName.getText().toString();
         Timestamp created = new Timestamp(calendar.getTime());
         boolean hasReminder = checkBox.isChecked();
         Timestamp reminderTime;
@@ -136,7 +144,6 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
         }
 
         String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-//        String userId = "123";
         // Task created
         Task newTask = new Task(name, created, reminderTime, hasReminder, userId);
 
@@ -149,6 +156,9 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "onSuccess: Added the item to firebase");
                         Toast.makeText(AddTaskItemActivity.this, "Added the item to database", Toast.LENGTH_SHORT).show();
+                        String msg = name;
+                        setAlarm(calendar1, msg);
+
                         finish();
                     }
                 })
@@ -158,6 +168,16 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
                         Log.e(TAG, "onFailure: ", e);
                     }
                 });
+    }
+
+    private void setAlarm(Calendar c, String msg) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReciever.class);
+        intent.putExtra(NOTIFICATION_MESSAGE, msg);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        if (!c.before(Calendar.getInstance())) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        }
     }
 
     private void addDate() {
