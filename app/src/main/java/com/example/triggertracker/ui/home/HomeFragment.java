@@ -19,10 +19,40 @@ import com.example.triggertracker.ui.shopping_list.ShoppingListViewModel;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private TextView vNoOfReminders, vNoOfTasks, vNoOfShoppingItems;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
+
+        vNoOfReminders = root.findViewById(R.id.noOfReminders);
+        vNoOfShoppingItems = root.findViewById(R.id.noOfShoppingItems);
+        vNoOfTasks = root.findViewById(R.id.noOfTasks);
+
+        homeViewModel.getNoOfTasks().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                vNoOfTasks.setText(s);
+                vNoOfTasks.invalidate();
+            }
+        });
+
+        homeViewModel.getNoOfReminders().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                vNoOfReminders.setText(s);
+                vNoOfReminders.invalidate();
+            }
+        });
+
+        homeViewModel.getNoOfShoppingItems().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                vNoOfShoppingItems.setText(s);
+                vNoOfShoppingItems.invalidate();
+            }
+        });
+
         return root;
     }
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -173,7 +174,8 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
 
     class ShoppingItemViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView shoppingItemImage, shoppingItemShare;
+        private ImageView shoppingItemImage;
+        private ImageButton shoppingItemShare;
         private TextView shoppingItemName,  shoppingItemQty;
         private Button btnPlus, btnMinus;
         private CheckBox isBought;
