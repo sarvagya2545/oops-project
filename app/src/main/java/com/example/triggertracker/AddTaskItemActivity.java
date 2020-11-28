@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -46,7 +47,12 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
     public static final String NOTIFICATION_MESSAGE = "com.example.triggertracker.notification.MESSAGE";
 
     private String TAG = "TAG";
-    private int noOfRemindersSet = 0;
+
+    private int getRequestCode() {
+        return 1 + (int)(Math.random() * 10000);
+    }
+
+    ArrayList<Integer> requestCodes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +151,11 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
 
         String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         // Task created
+
+//        TODO: SET REGEXP FOR THE TASK BEFORE ADDING
+
+
+
         Task newTask = new Task(name, created, reminderTime, hasReminder, userId);
 
         // Firestore: push task to database
@@ -174,7 +185,13 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReciever.class);
         intent.putExtra(NOTIFICATION_MESSAGE, msg);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        int requestCode = getRequestCode();
+        while(requestCodes.contains(requestCode)) {
+            requestCode = getRequestCode();
+            Log.d(TAG, "setAlarm: " + requestCode);
+        }
+        Log.d(TAG, "setAlarm: " + requestCode);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode, intent, 0);
         if (!c.before(Calendar.getInstance())) {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         }
