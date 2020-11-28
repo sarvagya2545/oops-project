@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class AddTaskItemActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -154,31 +155,35 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
 
 //        TODO: SET REGEXP FOR THE TASK BEFORE ADDING
 
-
-
         Task newTask = new Task(name, created, reminderTime, hasReminder, userId);
+        if(Pattern.matches("",name))
+        {
+//            Toast.makeText(AddTaskItemActivity.this,"Please Enter Something. ", Toast.LENGTH_SHORT).show();
+            editShopItemName.setError("Please Enter Something.");
+        }
+        else {
+            // Firestore: push task to database
+            FirebaseFirestore.getInstance()
+                    .collection("tasks")
+                    .add(newTask)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "onSuccess: Added the item to firebase");
+                            Toast.makeText(AddTaskItemActivity.this, "Added the item to database", Toast.LENGTH_SHORT).show();
+                            String msg = name;
+                            setAlarm(calendar1, msg);
 
-        // Firestore: push task to database
-        FirebaseFirestore.getInstance()
-                .collection("tasks")
-                .add(newTask)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "onSuccess: Added the item to firebase");
-                        Toast.makeText(AddTaskItemActivity.this, "Added the item to database", Toast.LENGTH_SHORT).show();
-                        String msg = name;
-                        setAlarm(calendar1, msg);
-
-                        finish();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure: ", e);
-                    }
-                });
+                            finish();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e(TAG, "onFailure: ", e);
+                        }
+                    });
+        }
     }
 
     private void setAlarm(Calendar c, String msg) {

@@ -106,7 +106,6 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
 
                                         String shareSub="Item";
                                         myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
-                                        myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
                                         myIntent.putExtra(Intent.EXTRA_TEXT,msg);
 
                                         //                Uri uri = Uri.fromFile(file);

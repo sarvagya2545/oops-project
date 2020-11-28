@@ -74,6 +74,44 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
                         });
             }
         });
+
+        holder.taskItemShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseFirestore.getInstance()
+                        .collection("ShopListItem")
+                        .document(taskId)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DocumentSnapshot> task) {
+                                if(task.isSuccessful()) {
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    if(user != null) {
+                                        String name = user.getDisplayName() != null ? user.getDisplayName() : user.getPhoneNumber();
+                                        String itemName = taskItem.getName();
+
+                                        String msg = "Task shared by: " + name +
+                                                "\nDescription: " + itemName;
+
+                                        Intent myIntent=new Intent(Intent.ACTION_SEND);
+                                        myIntent.setType("text/plain");
+
+                                        String shareSub="Item";
+                                        myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+                                        myIntent.putExtra(Intent.EXTRA_TEXT,msg);
+
+                                        context.startActivity(Intent.createChooser(myIntent, "Share via"));
+                                    }
+
+                                } else {
+                                    Toast.makeText(context, "Some error occurred", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+
     }
 
     @Override
@@ -88,11 +126,12 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
 
     class TaskViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView taskItemNotification, taskItemDelete;
+        private ImageView taskItemNotification, taskItemDelete, taskItemShare;
         private TextView taskItemName, taskItemTime;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
+            taskItemShare = itemView.findViewById(R.id.task_share);
             taskItemDelete = itemView.findViewById(R.id.task_delete);
             taskItemNotification = itemView.findViewById(R.id.task_notification);
             taskItemName = itemView.findViewById(R.id.task_name);

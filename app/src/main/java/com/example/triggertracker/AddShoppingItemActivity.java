@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class AddShoppingItemActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -68,22 +69,27 @@ public class AddShoppingItemActivity extends AppCompatActivity implements View.O
         int qty = qtyValue;
         ShoppingItem newItem = new ShoppingItem(name, created, qty, FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        FirebaseFirestore.getInstance()
-                .collection("ShopListItems")
-                .add(newItem)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "onSuccess: Added the item to firebase");
-                        Toast.makeText(AddShoppingItemActivity.this, "Added the item to database", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "onFailure: ", e);
-                    }
-                });
+        if(Pattern.matches("",name)) {
+//            Toast.makeText(AddShoppingItemActivity.this,"Please Enter Something. ", Toast.LENGTH_SHORT).show();
+            editShopItemName.setError("Please enter something");
+        } else {
+            FirebaseFirestore.getInstance()
+                    .collection("ShopListItems")
+                    .add(newItem)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "onSuccess: Added the item to firebase");
+                            Toast.makeText(AddShoppingItemActivity.this, "Added the item to database", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e(TAG, "onFailure: ", e);
+                        }
+                    });
+        }
     }
 }
