@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e6ccff"
+    android:background="#e7ece7"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:text="DashBoard"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#4A473B"
         android:textSize="36sp"
         android:textStyle="bold"
         android:typeface="sans"
@@ -29,10 +29,10 @@
         android:id="@+id/reminderCard"
         android:layout_width="match_parent"
         android:layout_height="105dp"
-        android:layout_marginTop="106dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="106dp"
         android:layout_marginEnd="40dp"
-        android:backgroundTint="#DDB9FF"
+        android:backgroundTint="@color/colorPrimary"
         android:textAlignment="center"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp"
@@ -48,7 +48,7 @@
             android:layout_gravity="center"
             android:text="Upcoming Remainders"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <TextView
@@ -58,6 +58,7 @@
             android:layout_gravity="bottom|center_horizontal|center_vertical"
             android:layout_marginBottom="23dp"
             android:text="loading..."
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
 
@@ -65,18 +66,18 @@
         android:id="@+id/shoppingItemsCard"
         android:layout_width="match_parent"
         android:layout_height="105dp"
+        android:layout_below="@+id/reminderCard"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#DDB9FF"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/colorPrimary"
         android:textAlignment="center"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_below="@+id/reminderCard">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView9"
@@ -85,7 +86,7 @@
             android:layout_gravity="center"
             android:text="Shopping Items Left"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <TextView
@@ -95,6 +96,7 @@
             android:layout_gravity="bottom|center_horizontal|center_vertical"
             android:layout_marginBottom="23dp"
             android:text="loading..."
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
 
@@ -102,18 +104,18 @@
         android:id="@+id/taskListCard"
         android:layout_width="match_parent"
         android:layout_height="105dp"
+        android:layout_below="@+id/shoppingItemsCard"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#DDB9FF"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/colorPrimary"
         android:textAlignment="center"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_below="@+id/shoppingItemsCard">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView10"
@@ -122,7 +124,7 @@
             android:layout_gravity="center"
             android:text="Tasks to do"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <TextView
@@ -132,6 +134,7 @@
             android:layout_gravity="bottom|center_horizontal|center_vertical"
             android:layout_marginBottom="23dp"
             android:text="loading..."
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
 
@@ -139,18 +142,18 @@
         android:id="@+id/personalDiaryCard"
         android:layout_width="match_parent"
         android:layout_height="105dp"
+        android:layout_below="@+id/taskListCard"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#DDB9FF"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/colorPrimary"
         android:textAlignment="center"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_below="@+id/taskListCard">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView12"
@@ -159,7 +162,7 @@
             android:layout_gravity="center"
             android:text="Personal Diary"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
 

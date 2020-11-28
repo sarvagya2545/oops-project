@@ -20,21 +20,22 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/shopping_item_image_card"
                 android:layout_width="120dp"
                 android:layout_height="100dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/shopping_item_image_card"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="2dp">
 
                 <ImageView
                     android:id="@+id/shopping_item_image"
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     tools:srcCompat="@tools:sample/avatars" />
 
@@ -44,47 +45,51 @@
                 android:id="@+id/shopping_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/shopping_item_image_card"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/shopping_item_image_card"
                 android:text="List Item"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/shopping_item_image_card"
                 android:layout_below="@+id/shopping_item_name"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:layout_toRightOf="@+id/shopping_item_image_card"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnMinus"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="#FFFFFF"
+                    android:background="@color/colorPrimary"
                     android:text="-"
+                    android:textColor="#FFFFFF"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/shopping_item_qty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:text="3"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+                    android:textColor="#FFFFFF" />
 
                 <Button
                     android:id="@+id/btnPlus"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="#FFFFFF"
+                    android:background="@color/colorPrimary"
                     android:padding="0dp"
                     android:text="+"
+                    android:textColor="#FFFFFF"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -95,7 +100,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="19dp"
-                android:layout_marginEnd="20dp" />
+                android:layout_marginEnd="20dp"
+                android:buttonTint="#FFFFFF" />
 
             <ImageButton
                 android:id="@+id/shopping_share"
@@ -105,7 +111,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="75dp"
                 android:layout_marginEnd="24dp"
-                android:background="#FFFFFF"
+                android:background="@color/colorPrimary"
                 android:src="@drawable/ic_baseline_share_24" />
 
         </RelativeLayout>
