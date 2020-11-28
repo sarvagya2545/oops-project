@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.triggertracker.R;
+import com.example.triggertracker.RemindersRecyclerAdapter;
 import com.example.triggertracker.Task;
 import com.example.triggertracker.TasksRecyclerAdapter;
 import com.example.triggertracker.ui.tasks.TasksViewModel;
@@ -23,7 +24,7 @@ public class RemindersFragment extends Fragment {
 
     private RemindersViewModel remindersViewModel;
     private RecyclerView RemindersRecView;
-    private TasksRecyclerAdapter remindersAdapter;
+    private RemindersRecyclerAdapter remindersAdapter;
 
     private String TAG = "TAG";
 
@@ -36,7 +37,7 @@ public class RemindersFragment extends Fragment {
         remindersViewModel.getmReminders().observe(getViewLifecycleOwner(), new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
-                remindersAdapter = new TasksRecyclerAdapter(requireActivity());
+                remindersAdapter = new RemindersRecyclerAdapter(requireActivity());
                 remindersAdapter.setTasks(tasks);
                 RemindersRecView.setAdapter(remindersAdapter);
             }
