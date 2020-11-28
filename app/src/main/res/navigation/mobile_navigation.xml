@@ -28,4 +28,10 @@
         android:name="com.example.triggertracker.ui.reminders.RemindersFragment"
         android:label="Reminders"
         tools:layout="@layout/fragment_reminders" />
+
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="com.example.triggertracker.ui.notes.NoteFragment"
+        android:label="Notes"
+        tools:layout="@layout/fragment_notes" />
 </navigation>

@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.triggertracker.ui.home.HomeViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
@@ -61,7 +60,7 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_add_task_item);
 
         btnAddDate = findViewById(R.id.btnAddDate);
-        btnAddItem = findViewById(R.id.btnAddItem);
+        btnAddItem = findViewById(R.id.btnAddNote);
         btnAddTime = findViewById(R.id.btnAddTime);
 
         btnAddDate.setOnClickListener(this);
@@ -108,7 +107,7 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
             case R.id.btnAddTime:
                 addTime();
                 break;
-            case R.id.btnAddItem:
+            case R.id.btnAddNote:
                 addItem();
                 break;
         }
@@ -138,7 +137,7 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
     private void addItem() {
         Log.d(TAG, "addItem: Reached here");
 
-        editShopItemName = findViewById(R.id.editShopItemName);
+        editShopItemName = findViewById(R.id.editNoteTitle);
 
         final String name = editShopItemName.getText().toString();
         Timestamp created = new Timestamp(calendar.getTime());

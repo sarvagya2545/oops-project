@@ -6,13 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -67,10 +63,10 @@ public class RemindersRecyclerAdapter extends RecyclerView.Adapter<RemindersRecy
 
         public ReminderViewHolder(@NonNull View itemView) {
             super(itemView);
-            taskItemDelete = itemView.findViewById(R.id.task_delete);
+            taskItemDelete = itemView.findViewById(R.id.note_delete);
             taskItemNotification = itemView.findViewById(R.id.task_notification);
-            taskItemName = itemView.findViewById(R.id.task_name);
-            taskItemTime = itemView.findViewById(R.id.task_time);
+            taskItemName = itemView.findViewById(R.id.note_title);
+            taskItemTime = itemView.findViewById(R.id.note_content);
         }
     }
 }

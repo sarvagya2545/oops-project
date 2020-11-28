@@ -2,11 +2,9 @@ package com.example.triggertracker;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -132,10 +129,10 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             taskItemShare = itemView.findViewById(R.id.task_share);
-            taskItemDelete = itemView.findViewById(R.id.task_delete);
+            taskItemDelete = itemView.findViewById(R.id.note_delete);
             taskItemNotification = itemView.findViewById(R.id.task_notification);
-            taskItemName = itemView.findViewById(R.id.task_name);
-            taskItemTime = itemView.findViewById(R.id.task_time);
+            taskItemName = itemView.findViewById(R.id.note_title);
+            taskItemTime = itemView.findViewById(R.id.note_content);
         }
     }
 }

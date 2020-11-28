@@ -21,5 +21,10 @@
             android:id="@+id/nav_reminders"
             android:icon="@drawable/ic_baseline_add_alert_24"
             android:title="Reminders" />
+
+        <item
+            android:id="@+id/nav_notes"
+            android:icon="@drawable/ic_baseline_note_24"
+            android:title="Notes" />
     </group>
 </menu>

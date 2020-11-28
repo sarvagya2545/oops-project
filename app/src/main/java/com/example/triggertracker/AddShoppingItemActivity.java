@@ -21,7 +21,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -53,7 +52,7 @@ public class AddShoppingItemActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_add_shopping_item);
 
         quantityPicker = findViewById(R.id.qtyPicker);
-        btnAddItem = findViewById(R.id.btnAddItem);
+        btnAddItem = findViewById(R.id.btnAddNote);
         btnAddItem.setOnClickListener(this);
         findViewById(R.id.btnUpload).setOnClickListener(this);
         uploadImage = findViewById(R.id.uploadImage);
@@ -73,7 +72,7 @@ public class AddShoppingItemActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.btnAddItem:
+            case R.id.btnAddNote:
                 addItem();
                 break;
             case R.id.btnUpload:
@@ -117,7 +116,7 @@ public class AddShoppingItemActivity extends AppCompatActivity implements View.O
 
     private void addItem() {
         Log.d(TAG, "addItem: Reached here");
-        editShopItemName = findViewById(R.id.editShopItemName);
+        editShopItemName = findViewById(R.id.editNoteTitle);
         String name = editShopItemName.getText().toString();
         Timestamp created = new Timestamp(new Date());
         int qty = qtyValue;

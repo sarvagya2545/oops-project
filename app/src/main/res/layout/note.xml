@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -32,7 +32,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Maintainence Task 1"
+                android:text="Note Title"
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="120dp"
                 android:layout_marginBottom="16dp"
-                android:text="22/10/2020 12:00AM"
+                android:layout_marginTop="20dp"
+                android:text="Note Content"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,37 +56,25 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
-                android:id="@+id/task_notification"
+                android:id="@+id/note_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="18dp"
-                android:src="@drawable/ic_baseline_notifications_24"
-                app:layout_constraintBottom_toTopOf="@+id/note_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_baseline_edit_24"
+                app:layout_constraintEnd_toEndOf="@+id/note_delete"
+                app:layout_constraintStart_toStartOf="@+id/note_delete"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/note_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="20dp"
                 android:src="@drawable/ic_baseline_delete_24"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.895"
-                app:layout_constraintStart_toEndOf="@+id/note_content" />
-
-            <ImageView
-                android:id="@+id/task_share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:src="@drawable/ic_baseline_share_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/note_delete"
-                app:layout_constraintStart_toEndOf="@+id/note_content" />
+                app:layout_constraintStart_toEndOf="@+id/note_content"
+                app:layout_constraintTop_toBottomOf="@+id/note_edit" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
