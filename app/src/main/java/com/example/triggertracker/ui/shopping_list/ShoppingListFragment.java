@@ -55,8 +55,6 @@ public class ShoppingListFragment extends Fragment {
 
     private String TAG = "TAG";
 
-    ShoppingItem deletedShoppingItem = null;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         shoppingListViewModel = new ViewModelProvider(getActivity()).get(ShoppingListViewModel.class);
@@ -77,8 +75,7 @@ public class ShoppingListFragment extends Fragment {
                 shoppingListAdapter = new ShoppingItemsRecyclerAdapter(getContext());
                 shoppingListAdapter.setShoppingItems(shoppingList);
                 shoppingRecyclerView.setAdapter(shoppingListAdapter);
-                ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
                     @Override
                     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                         return false;
@@ -89,31 +86,22 @@ public class ShoppingListFragment extends Fragment {
                         final int position = viewHolder.getAdapterPosition();
                         ShoppingItem shoppingItem = shoppingList.get(position);
                         String docId = shoppingItem.getDocumentId();
-
-                        switch(direction) {
-                            case ItemTouchHelper.LEFT:
-                                Toast.makeText(getContext(), "LEFT", Toast.LENGTH_SHORT).show();
-                                break;
-                            case ItemTouchHelper.RIGHT:
-                                deletedShoppingItem = shoppingItem;
-                                FirebaseFirestore.getInstance()
-                                        .collection("ShopListItems")
-                                        .document(docId)
-                                        .delete()
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                shoppingListAdapter.notifyItemRemoved(position);
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.e(TAG, "onFailure: ", e);
-                                            }
-                                        });
-                                break;
-                        }
+                        FirebaseFirestore.getInstance()
+                                .collection("ShopListItems")
+                                .document(docId)
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        shoppingListAdapter.notifyItemRemoved(position);
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.e(TAG, "onFailure: ", e);
+                                    }
+                                });
                     }
 
                     @Override

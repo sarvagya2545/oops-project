@@ -110,7 +110,7 @@ public class AddShoppingItemActivity extends AppCompatActivity implements View.O
     }
 
     private Bitmap handleUpload(Bitmap bitmap) {
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
         return bitmap;
     }
 

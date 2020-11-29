@@ -1,5 +1,7 @@
 package com.example.triggertracker;
 
+import android.net.Uri;
+
 import com.google.firebase.Timestamp;
 import com.google.firebase.storage.StorageReference;
 
@@ -11,6 +13,15 @@ public class ShoppingItem {
     private String documentId;
     private boolean isBought;
     private StorageReference imageReference;
+    private Uri ShareUri;
+
+    public Uri getShareUri() {
+        return ShareUri;
+    }
+
+    public void setShareUri(Uri shareUri) {
+        ShareUri = shareUri;
+    }
 
     public StorageReference getImageReference() {
         return imageReference;

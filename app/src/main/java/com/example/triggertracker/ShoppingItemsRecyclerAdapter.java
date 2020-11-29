@@ -87,6 +87,8 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        item.setShareUri(uri);
+
                         Glide.with(context)
                                 .asBitmap()
                                 .load(uri)
@@ -123,15 +125,14 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                                                 "\nItem: " + itemName +
                                                 "\nQuantity: " + itemQuantity;
 
-                                        Intent myIntent=new Intent(Intent.ACTION_SEND);
+                                        final Intent myIntent=new Intent(Intent.ACTION_SEND);
                                         myIntent.setType("text/plain");
 
                                         String shareSub="Item";
                                         myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
                                         myIntent.putExtra(Intent.EXTRA_TEXT,msg);
 
-                                        //                Uri uri = Uri.fromFile(file);
-                                        //                myIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//                                        myIntent.putExtra(Intent.EXTRA_STREAM, item.getShareUri());
 
                                         context.startActivity(Intent.createChooser(myIntent, "Share via"));
                                     }
