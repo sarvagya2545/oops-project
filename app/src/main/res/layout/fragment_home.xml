@@ -166,4 +166,16 @@
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
 
+    <ImageButton
+        android:id="@+id/btnExtraFeature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="26dp"
+        android:background="#5226EA"
+        android:src="@drawable/ic_baseline_star_24"
+        android:tint="#FFFFFF" />
+
 </RelativeLayout>

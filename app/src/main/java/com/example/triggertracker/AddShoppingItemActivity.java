@@ -116,7 +116,7 @@ public class AddShoppingItemActivity extends AppCompatActivity implements View.O
 
     private void addItem() {
         Log.d(TAG, "addItem: Reached here");
-        editShopItemName = findViewById(R.id.editNoteTitle);
+        editShopItemName = findViewById(R.id.editItemName);
         String name = editShopItemName.getText().toString();
         Timestamp created = new Timestamp(new Date());
         int qty = qtyValue;
