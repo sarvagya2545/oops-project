@@ -92,6 +92,7 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                         Glide.with(context)
                                 .asBitmap()
                                 .load(uri)
+                                .placeholder(R.mipmap.ic_grocery)
                                 .centerCrop()
                                 .into(holder.shoppingItemImage);
                     }
@@ -99,6 +100,12 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        Glide.with(context)
+                                .asBitmap()
+                                .load(R.mipmap.ic_grocery)
+                                .centerCrop()
+                                .into(holder.shoppingItemImage);
+
                         Log.d(TAG, "onFailure: Did not load");
                     }
                 });
