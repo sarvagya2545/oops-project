@@ -93,7 +93,7 @@ public class ShoppingListFragment extends Fragment {
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        shoppingListAdapter.notifyItemRemoved(position);
+//                                        shoppingListAdapter.notifyItemRemoved(position);
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
