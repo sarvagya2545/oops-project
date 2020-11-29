@@ -116,6 +116,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if(user != null) {
+            user.reload();
             Intent intent;
             if(user.isEmailVerified() || user.getPhoneNumber() != null) {
                 intent = new Intent(this, UserActivity.class);

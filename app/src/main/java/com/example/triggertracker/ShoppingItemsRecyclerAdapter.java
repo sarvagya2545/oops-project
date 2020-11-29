@@ -87,12 +87,11 @@ public class ShoppingItemsRecyclerAdapter extends RecyclerView.Adapter<ShoppingI
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-//                        Glide
-//                                .with(context)
-//                                .load(uri)
-//                                .placeholder()
-//                                .centerCrop()
-//                                .into(holder.shoppingItemImage);
+                        Glide.with(context)
+                                .asBitmap()
+                                .load(uri)
+                                .centerCrop()
+                                .into(holder.shoppingItemImage);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
