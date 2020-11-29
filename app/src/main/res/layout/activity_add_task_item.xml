@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editNoteTitle"
+        android:id="@+id/editTaskName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -73,10 +73,10 @@
         android:text="SET DATE"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNoteTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/editTaskName" />
 
     <Button
-        android:id="@+id/btnAddNote"
+        android:id="@+id/btnAddTask"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -98,6 +98,6 @@
         app:layout_constraintBottom_toTopOf="@+id/btnAddDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNoteTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/editTaskName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

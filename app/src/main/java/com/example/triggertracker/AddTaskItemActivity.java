@@ -38,8 +38,8 @@ import java.util.regex.Pattern;
 public class AddTaskItemActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView dateTextView, timeTextView;
-    EditText editShopItemName;
-    Button btnAddDate, btnAddTime, btnAddItem;
+    EditText editTaskName;
+    Button btnAddDate, btnAddTime, btnAddTask;
     Calendar calendar = Calendar.getInstance(),
              calendar1 = Calendar.getInstance();
     CheckBox checkBox;
@@ -60,12 +60,12 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_add_task_item);
 
         btnAddDate = findViewById(R.id.btnAddDate);
-        btnAddItem = findViewById(R.id.btnAddNote);
+        btnAddTask = findViewById(R.id.btnAddTask);
         btnAddTime = findViewById(R.id.btnAddTime);
 
         btnAddDate.setOnClickListener(this);
         btnAddTime.setOnClickListener(this);
-        btnAddItem.setOnClickListener(this);
+        btnAddTask.setOnClickListener(this);
 
         dateTextView = findViewById(R.id.dateTextView);
         timeTextView = findViewById(R.id.timeTextView);
@@ -107,7 +107,7 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
             case R.id.btnAddTime:
                 addTime();
                 break;
-            case R.id.btnAddNote:
+            case R.id.btnAddItem:
                 addItem();
                 break;
         }
@@ -137,9 +137,9 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
     private void addItem() {
         Log.d(TAG, "addItem: Reached here");
 
-        editShopItemName = findViewById(R.id.editNoteTitle);
+        editTaskName = findViewById(R.id.editTaskName);
 
-        final String name = editShopItemName.getText().toString();
+        final String name = editTaskName.getText().toString();
         Timestamp created = new Timestamp(calendar.getTime());
         boolean hasReminder = checkBox.isChecked();
         Timestamp reminderTime;
@@ -158,7 +158,7 @@ public class AddTaskItemActivity extends AppCompatActivity implements View.OnCli
         if(Pattern.matches("",name))
         {
 //            Toast.makeText(AddTaskItemActivity.this,"Please Enter Something. ", Toast.LENGTH_SHORT).show();
-            editShopItemName.setError("Please Enter Something.");
+            editTaskName.setError("Please Enter Something.");
         }
         else {
             // Firestore: push task to database
