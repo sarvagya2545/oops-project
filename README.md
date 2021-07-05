@@ -7,4 +7,4 @@ Credits to:
 2. Sahaj Gupta (https://github.com/SahajGupta11)
 3. Aman Jham (https://github.com/Aman-Jham1)
 
-for collaborating with me to complete this project.
+for collaborating with me (Sarvagya Sharma) to complete this project.
